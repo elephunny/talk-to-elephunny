@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+.bv{
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+@media ( min-aspect-ratio: 16/9){
+    .bv{
+        width: 100%;
+        height: auto;
+    }
+}
+@media ( max-aspect-ratio: 16/9){
+    .bv{
+        width: auto;
+        height: 100%;
+    }
+}
+
+
+
+    </style>
+</head>
+<body>
+    
+
+     <div >
+        <video autoplay loop muted plays-inline class="bv">
+            <source src="backvid.mp4" type="video/mp4">
+        </video>
+
+        <h1 style="position: relative; text-align: center; font-family:fantasy;">TALK TO ELEPHUNNY</h1>
+    
+        <p style="position: relative;  font-size: 100%; float: left;font-family: cursive;">Elephant + funny = Elephunny</p>
+        <p style="position: relative;  font-size: 100%; float: right;font-family: cursive;">Its a funny Elephant</p>
+        
+<br>
+</div>
+     
+     <div style="text-align: center;position: relative;padding: 100px; ">
+        <form name="submit-to-google-sheet">
+
+            <label style="font-family: cursive;">Say your name to elephunny</label><br>
+            <input type="text" name="name" placeholder="your name"><br>
+
+            <label style="font-family: cursive;">Wanna say something to elephunny?</label><br>
+            <textarea name="say"  cols="50" rows="10" placeholder="Whats in your mind?"></textarea><br>
+            
+            <label style="font-family: cursive;">You want elephunny to respond?</label><br>
+            <input type="text" name="reply" placeholder="Yes/No"><br>
+
+            <input type="submit" name =" submit"><br>
+
+            <span id="success"></span>
+        </form>
+
+        
+          <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxYwVQDzLAKljizNY9M4pTycEvFJ2dXtpul-WAXh_X0n7mWgzEx0QjNLExC7HkRVGjt/exec'
+            const form = document.forms['submit-to-google-sheet']
+          const success = document.getElementById('success')
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {success.innerHTML="sent to elephunny!"
+                setTimeout(function(){
+                    success.innerHTML=""
+                },500)
+                form.reset();
+            })
+                .catch(error => console.error('Error!', error.message))
+            })
+          </script>
+    </div>
+
+    <div>
+        <p style="float: left;font-family: cursive;">Wanna to talk to meow?</p>
+       
+            <button type="button" onclick="alert('Coming soon!')">Go to MEOW</button>
+        
+        <p style="float: right;font-family: cursive;">wanna talk to others?</p>
+         
+        <button style="float: right" type="button" onclick="alert('Coming soon!')">Go to Zoo</button>
+        
+    <pre style="text-align: center;">
+        This is made by param
+        Did you like it?
+        <button type="button" onclick="alert('OK, give me 5$ and talk to Elephunny')">Did you like Elephunny?</button>
+    </pre>
+    </div>
+
+
+</body>
+</html>
